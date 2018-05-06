@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public float _speed;
+
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.right * _speed;
+    }
+
 }
