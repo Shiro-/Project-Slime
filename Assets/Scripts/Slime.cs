@@ -12,14 +12,14 @@ public class Slime : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //rb.velocity = Vector3.right * _speed;
+        rb.velocity = Vector3.right * _speed;
     }
 
     private void FixedUpdate()
     {
-        
-        Vector3 mover = new Vector3(_speed, 0.0f, 0.0f);
-        rb.AddForce(mover);
+        Vector3 mover = new Vector3(_speed, rb.velocity.y, 0.0f);
+        rb.velocity = mover;
+        //rb.AddForce(mover);
     }
 
 }
