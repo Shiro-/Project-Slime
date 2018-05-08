@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
         Vector3 mover = new Vector3(moveX, 0.0f, moveZ);
         rb.AddForce(mover * _speed);
 
-        rb.freezeRotation = true;
+        //rb.freezeRotation = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
 
     }
 

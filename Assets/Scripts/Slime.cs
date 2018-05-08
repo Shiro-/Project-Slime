@@ -17,7 +17,9 @@ public class Slime : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = Vector3.right * _speed;
+        
+        Vector3 mover = new Vector3(_speed, 0.0f, 0.0f);
+        rb.AddForce(mover);
     }
 
 }
