@@ -12,7 +12,12 @@ public class Slime : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.right * _speed;
+        //rb.velocity = Vector3.right * _speed;
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = Vector3.right * _speed;
     }
 
 }

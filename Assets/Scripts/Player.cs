@@ -15,10 +15,13 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //float moveX = Input.GetAxis("Horizontal");
-        //float moveY = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
 
-        
+        Vector3 mover = new Vector3(moveX, 0.0f, moveZ);
+        rb.AddForce(mover * _speed);
+
+        rb.freezeRotation = true;
 
     }
 
