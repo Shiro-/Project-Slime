@@ -5,15 +5,12 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
+    public GameObject slimes;
+    public GameObject[] spawnConstraints;
+
+
+    private void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        
     }
 }
