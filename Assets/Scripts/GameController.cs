@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-
-    public GameObject slimes;
-    public GameObject[] spawnConstraints;
-
-
     private void Start()
+    {
+        
+    }
+
+    private void Update()
     {
         
     }
