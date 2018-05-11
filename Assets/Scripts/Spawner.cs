@@ -12,18 +12,19 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        
+        //Time before we start spawning
     }
 
     private void Update()
     {
-        
+        //Check which spawn we are on
+        //Start coroutines
     }
 
 
     IEnumerator SpawnSlimes()
     {
-
+        //Spawning logic
         yield break;
     }
 }
