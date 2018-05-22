@@ -650,6 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651247298}
   - component: {fileID: 1651247299}
+  - component: {fileID: 1651247300}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -681,6 +682,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e621a0fc1d0df499baea5c75b10cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1651247300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1651247297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506a3e4724423f74188abf53f62d1b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPositions:
+  - {fileID: 1681688068}
+  - {fileID: 1233468205}
+  slimes: {fileID: 849698470}
+  enemyCount: 10
+  waitTime: 0.5
+  spawnTime: 1
 --- !u!1 &1681688068
 GameObject:
   m_ObjectHideFlags: 0
