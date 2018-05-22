@@ -32,6 +32,7 @@ public class Spawner : MonoBehaviour
 
         for(int i = 0; i < enemyCount; i++)
         {
+            Debug.Log(i);
             Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
             yield return new WaitForSeconds(spawnTime);
         }
