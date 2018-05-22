@@ -5,6 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
+    enum SpawningState { Wave, Infinite };
+    SpawningState currentState = SpawningState.Infinite;
+
     public GameObject[] spawnPositions;
     public Transform slimes;
 
@@ -12,6 +15,8 @@ public class Spawner : MonoBehaviour
 
     public float waitTime;
     public float spawnTime;
+
+    bool isPlayerDead;
 
     private void Start()
     {
@@ -30,13 +35,32 @@ public class Spawner : MonoBehaviour
         //Spawning logic
         yield return new WaitForSeconds(waitTime);
 
-        for(int i = 0; i < enemyCount; i++)
+        if(currentState == SpawningState.Infinite)
         {
-            Debug.Log(i);
-            Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
-            yield return new WaitForSeconds(spawnTime);
-        }
+            while(true)
+            {
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    Debug.Log(i);
+                    Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
+                    yield return new WaitForSeconds(spawnTime);
+                }
+                //This should be a variable
+                yield return new WaitForSeconds(0.5f);
 
+                CheckIfPlayerHasDied();
+
+                if(isPlayerDead == true)
+                {
+                    break;
+                }
+            }
+        }
+        else if(currentState == SpawningState.Wave)
+        {
+            //do something
+        }
+        
         yield return new WaitForSeconds(spawnTime);
     }
 
@@ -52,5 +76,13 @@ public class Spawner : MonoBehaviour
 
         //Choose between the random position or the base position
         return newPositions[Random.Range(0, (pos.Length - 1))];
+    }
+
+    private void CheckIfPlayerHasDied()
+    {
+        if(GameObject.FindWithTag("Player") == null)
+        {
+            isPlayerDead = true;   
+        }
     }
 }

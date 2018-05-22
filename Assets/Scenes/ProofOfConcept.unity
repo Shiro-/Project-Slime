@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 289043173}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   slimes: {fileID: 4698322417891424, guid: f5fcd3d7f8f65f240a37c4b2161376ee, type: 2}
   enemyCount: 10
   waitTime: 0.5
-  spawnTime: 1
+  spawnTime: 0.1
 --- !u!1 &1681688068
 GameObject:
   m_ObjectHideFlags: 0
