@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float _speed;
-
+    
     private Rigidbody rb;
+    private float freezeAxis = 0.0f;
 
     private void Start()
     {
@@ -24,8 +25,10 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(mover.x * _speed, rb.velocity.y, mover.z * _speed);
 
         //rb.freezeRotation = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX;
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+        //rb.constraints = RigidbodyConstraints.FreezeRotationX;
+        //rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+        //rb.constraints = RigidbodyConstraints.FreezeRotation;
+        transform.rotation = Quaternion.Euler(freezeAxis, transform.rotation.y, freezeAxis);
 
     }
 
