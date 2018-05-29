@@ -19,10 +19,11 @@ public class Player : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        Vector3 mover = new Vector3(moveX, rb.velocity.y, moveZ);
-        //rb.velocity = (mover * _speed);
-        //rb.AddForce(mover * _speed);
-        rb.velocity = new Vector3(mover.x * _speed, rb.velocity.y, mover.z * _speed);
+        Vector3 mover = new Vector3(moveX, 1.0f, moveZ) * _speed;
+
+        mover.y = rb.velocity.y;
+        rb.velocity = mover;
+        
 
         //rb.freezeRotation = true;
         //rb.constraints = RigidbodyConstraints.FreezeRotationX;
