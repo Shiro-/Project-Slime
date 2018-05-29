@@ -11,21 +11,24 @@ public class Player : MonoBehaviour
 
     private GameObject[] ground;
 
-    private Transform gPrev;
-    private Transform gCurrent;
-    private Transform gNext;
+    private GameObject gPrev;
+    private GameObject gCurrent;
+    private GameObject gNext;
 
     private int pGround;
     private Transform groundT;
+
+    private float gOffset;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         ground = GameObject.FindGameObjectsWithTag("Ground");
-        gCurrent = ground[0].GetComponent<Transform>();
-        gNext = ground[1].GetComponent<Transform>();
+        gCurrent = ground[0];
+        gNext = ground[1];
         pGround = 0;
+        gOffset = 10.0f;
     }
 
     private void FixedUpdate()
@@ -52,8 +55,8 @@ public class Player : MonoBehaviour
         if (other.tag == "GroundT")
         {
             groundT = other.GetComponentInParent<Transform>();
-            pGround = Mathf.FloorToInt(rb.position.x / 20);
-            gCurrent = other.GetComponentInParent<Transform>();
+            pGround = Mathf.FloorToInt((rb.position.x + gOffset) / 20);
+            gCurrent = other.GetComponentInParent<GameObject>();
         }
     }
 
@@ -61,12 +64,22 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "GroundT")
         {
-            pGround = Mathf.FloorToInt(rb.position.x / 20);
+            pGround = Mathf.FloorToInt((rb.position.x + gOffset) / 20);
             //Set previous to one we just exited
-            gNext = gPrev;
-            gPrev = other.GetComponentInParent<Transform>();
 
-            gNext.SetPositionAndRotation(new Vector3((pGround + 1) * 20, 0.0f, 0.0f), gNext.rotation);
+            if (pGround == 1)
+            {
+                gNext = ground[2];
+                gPrev = ground[0];
+            }
+            else
+            {
+                gPrev = gNext;
+                gPrev = other.GetComponent<GameObject>();
+
+                groundT = gNext.GetComponent<Transform>();
+                gNext.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround + 1) * 20, 0.0f, 0.0f), groundT.rotation);
+            }  
         }
     }
 }
