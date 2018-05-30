@@ -6,17 +6,32 @@ public class Spawner : MonoBehaviour
 {
 
     enum SpawningState { Wave, Infinite };
+    //This will most likely be set through a menu
     SpawningState currentState = SpawningState.Infinite;
 
     public GameObject[] spawnPositions;
     public Transform slimes;
 
-    public int enemyCount;
-
     public float waitTime;
     public float spawnTime;
 
     bool isPlayerDead;
+
+    [System.Serializable]
+    public class Wave
+    {
+        public int slimeCount;
+        //Testing purposes
+        public Transform[] slimeTypes;
+        public float timeBetweenWaves;
+    }
+
+    public Wave[] waves;
+    public int waveCount;
+
+    //
+    private Vector3 previousPoint;
+    //
 
     private void Start()
     {
@@ -37,20 +52,14 @@ public class Spawner : MonoBehaviour
 
         if(currentState == SpawningState.Infinite)
         {
-            while(true)
+            while (true)
             {
-                for (int i = 0; i < enemyCount; i++)
-                {
-                    Debug.Log(i);
-                    Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
-                    yield return new WaitForSeconds(spawnTime);
-                }
-                //This should be a variable
-                yield return new WaitForSeconds(0.5f);
+                Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
+                yield return new WaitForSeconds(spawnTime);
 
                 CheckIfPlayerHasDied();
 
-                if(isPlayerDead == true)
+                if (isPlayerDead == true)
                 {
                     break;
                 }
@@ -59,6 +68,14 @@ public class Spawner : MonoBehaviour
         else if(currentState == SpawningState.Wave)
         {
             //do something
+            while(waveCount > 0)
+            {
+
+            }
+        }
+        else
+        {
+            Debug.Log("Spawning state does not exist");
         }
         
         yield return new WaitForSeconds(spawnTime);
@@ -75,10 +92,10 @@ public class Spawner : MonoBehaviour
         }
 
         //Choose between the random position or the base position
-        return newPositions[Random.Range(0, (pos.Length - 1))];
+        return newPositions[Random.Range(0, pos.Length)];
     }
 
-    private void CheckIfPlayerHasDied()
+    void CheckIfPlayerHasDied()
     {
         if(GameObject.FindWithTag("Player") == null)
         {
