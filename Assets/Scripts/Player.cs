@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         gPrev = ground[2];
 
         //Initialize the ground chunks' positions so we're moving the right ones
-        gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3(-2 * groundL, 0.0f, 0.0f), Quaternion.identity);
+        gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3(2 * groundL, 0.0f, 0.0f), Quaternion.identity);
         gCurrent.GetComponent<Transform>().SetPositionAndRotation(new Vector3(0 * groundL, 0.0f, 0.0f), Quaternion.identity);
         gNext.GetComponent<Transform>().SetPositionAndRotation(new Vector3(1 * groundL, 0.0f, 0.0f), Quaternion.identity);
 
@@ -77,25 +77,30 @@ public class Player : MonoBehaviour
         {
             float oldGround = pGround;
 
+            //Player's current ground "tile"
             pGround = Mathf.FloorToInt((rb.position.x + gOffset) / groundL);
 
-            //Moving forward
-            if (oldGround < pGround)
+            //This check ensures that we never put any ground before the first section
+            if (pGround > 0)
             {
-                gNext = gPrev.gameObject;
-                gPrev = other.gameObject;
+                //Moving forward
+                if (oldGround < pGround)
+                {
+                    gNext = gPrev.gameObject;
+                    gPrev = other.gameObject;
 
-                groundT = gNext.GetComponent<Transform>();
-                gNext.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround + 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
-            }
-            //Moving backward
-            else if (oldGround > pGround)
-            {
-                gPrev = gNext.gameObject;
-                gNext = other.gameObject;
+                    groundT = gNext.GetComponent<Transform>();
+                    gNext.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround + 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                }
+                //Moving backward
+                else if (oldGround > pGround)
+                {
+                    gPrev = gNext.gameObject;
+                    gNext = other.gameObject;
 
-                groundT = gNext.GetComponent<Transform>();
-                gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                    groundT = gNext.GetComponent<Transform>();
+                    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                }
             }
         }
     }
