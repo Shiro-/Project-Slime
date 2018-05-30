@@ -49,24 +49,15 @@ public class Player : MonoBehaviour
 
         Vector3 mover = new Vector3(moveX, 1.0f, moveZ) * _speed;
 
-
         mover.y = rb.velocity.y;
         rb.velocity = mover;
 
-        
-
-
-
         //rb.freezeRotation = true;
-
         //rb.constraints = RigidbodyConstraints.FreezeRotationX;
-
         //rb.constraints = RigidbodyConstraints.FreezeRotationZ;
-
         //rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         transform.rotation = Quaternion.Euler(freezeAxis, transform.rotation.y, freezeAxis);
-
     }
 
     private void OnTriggerEnter(Collider other)
