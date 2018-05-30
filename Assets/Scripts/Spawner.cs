@@ -7,13 +7,17 @@ public class Spawner : MonoBehaviour
 
     enum SpawningState { Wave, Infinite };
     //This will most likely be set through a menu
-    SpawningState currentState = SpawningState.Infinite;
+    SpawningState currentState = SpawningState.Wave;
 
     public GameObject[] spawnPositions;
     public Transform slimes;
 
-    public float waitTime;
+    //Infinite State
+    public float waitTimeBeforeSpawning;
     public float spawnTime;
+
+    //Wave State
+    public float waitTimeBetweenWaves;
 
     bool isPlayerDead;
 
@@ -23,11 +27,11 @@ public class Spawner : MonoBehaviour
         public int slimeCount;
         //Testing purposes
         public Transform[] slimeTypes;
-        public float timeBetweenWaves;
     }
 
     public Wave[] waves;
     public int waveCount;
+    public int currentWave;
 
     //
     private Vector3 previousPoint;
@@ -35,8 +39,23 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        currentWave = 0;
+        waveCount = waves.Length;
+
         //Time before we start spawning
-        StartCoroutine(SpawnSlimes());
+        if(currentState == SpawningState.Infinite)
+        {
+            StartCoroutine(SpawnInfiniteSlimes());
+        }
+        else if (currentState == SpawningState.Wave)
+        {
+            StartCoroutine(SpawnWaveSlimes());
+        }
+        else
+        {
+            //If somehow we end up here, display a message in console
+            Debug.Log("Current state is invalid");
+        }
     }
 
     private void Update()
@@ -44,41 +63,59 @@ public class Spawner : MonoBehaviour
         //Check which spawn we are on
     }
 
-
-    IEnumerator SpawnSlimes()
+    IEnumerator SpawnInfiniteSlimes()
     {
         //Spawning logic
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTimeBeforeSpawning);
 
-        if(currentState == SpawningState.Infinite)
+        while (true)
         {
-            while (true)
+            Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
+            yield return new WaitForSeconds(spawnTime);
+
+            //If our player died, get out of this loop
+            CheckIfPlayerHasDied();
+            if (isPlayerDead == true)
             {
-                Instantiate(slimes, RandomSpawnPosition(spawnPositions), Quaternion.identity);
-                yield return new WaitForSeconds(spawnTime);
+                break;
+            }
+        }
 
+        yield return new WaitForSeconds(spawnTime);
+    }
+
+    IEnumerator SpawnWaveSlimes()
+    {
+        Transform[] enemyTypes = waves[currentWave].slimeTypes;
+        int numberOfTypes = enemyTypes.Length;
+
+        while (true)
+        {
+            if(currentWave < waveCount)
+            {
+                yield return new WaitForSeconds(waitTimeBetweenWaves);
+                for (int i = 0; i < waves[currentWave].slimeCount; i++)
+                {
+                    Instantiate(enemyTypes[Random.Range(0, numberOfTypes)], RandomSpawnPosition(spawnPositions), Quaternion.identity);
+                    yield return new WaitForSeconds(spawnTime);
+                }
+                currentWave++;
+
+                //If our player died, get out of this loop
                 CheckIfPlayerHasDied();
-
                 if (isPlayerDead == true)
                 {
                     break;
                 }
             }
-        }
-        else if(currentState == SpawningState.Wave)
-        {
-            //do something
-            while(waveCount > 0)
+            else
             {
-
+                break;
             }
-        }
-        else
-        {
-            Debug.Log("Spawning state does not exist");
+            
         }
         
-        yield return new WaitForSeconds(spawnTime);
+        yield break;
     }
 
     Vector3 RandomSpawnPosition(GameObject[] pos)
