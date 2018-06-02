@@ -8,25 +8,31 @@ public class CameraFollow : MonoBehaviour
     public GameObject trigger;
     public Transform cameraPosition;
 
-    Collider playerCollider;
-    Collider triggerCollider;
+    private Collider playerCollider;
+    private Collider triggerCollider;
 
-    bool isColliding;
+    private Vector3 offset;
+
+    private bool isColliding;
 
     void Start()
     {
         playerCollider = player.GetComponent<Collider>();
         triggerCollider = trigger.GetComponent<Collider>();
+
+        //Used so we can move the camera along the x axis only
+        offset = transform.position - player.transform.position;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
 
         CheckPlayerTrigger();
 
         if(isColliding)
         {
-            transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
+            //transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
+            transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, 0.0f);
         }
         else
         {
