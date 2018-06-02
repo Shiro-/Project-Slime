@@ -47,17 +47,12 @@ public class Player : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        Vector3 mover = new Vector3(moveX, 1.0f, moveZ) * _speed;
-
-        mover.y = rb.velocity.y;
-        rb.velocity = mover;
-
-        //rb.freezeRotation = true;
-        //rb.constraints = RigidbodyConstraints.FreezeRotationX;
-        //rb.constraints = RigidbodyConstraints.FreezeRotationZ;
-        //rb.constraints = RigidbodyConstraints.FreezeRotation;
-
-        transform.rotation = Quaternion.Euler(freezeAxis, transform.rotation.y, freezeAxis);
+        Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, 0.0f, moveZ * _speed * Time.deltaTime);
+        
+        //mover.y = rb.velocity.y;
+        //rb.velocity = mover;
+        //rb.MovePosition(transform.position + mover);
+        rb.AddForce(mover);
     }
 
     private void OnTriggerEnter(Collider other)
