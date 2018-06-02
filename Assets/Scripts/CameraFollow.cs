@@ -5,12 +5,44 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject player;
+    public GameObject trigger;
     public Transform cameraPosition;
 
-    // Update is called once per frame
+    Collider playerCollider;
+    Collider triggerCollider;
 
-    void LateUpdate()
+    bool isColliding;
+
+    void Start()
     {
-        transform.position = new Vector3(cameraPosition.position.x + player.transform.position.x, cameraPosition.position.y, 0.0f);
+        playerCollider = player.GetComponent<Collider>();
+        triggerCollider = trigger.GetComponent<Collider>();
+    }
+
+    void FixedUpdate()
+    {
+
+        CheckPlayerTrigger();
+
+        if(isColliding)
+        {
+            transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
+        }
+        else
+        {
+            Debug.Log("Camera not moving");
+        }
+    }
+
+    void CheckPlayerTrigger()
+    {
+        if(playerCollider.bounds.Intersects(triggerCollider.bounds))
+        {
+            isColliding = true;
+        }
+        else
+        {
+            isColliding = false;
+        }
     }
 }
