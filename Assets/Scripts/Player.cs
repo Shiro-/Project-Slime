@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float _speed;
-    
+
     private Rigidbody rb;
     private float freezeAxis = 0.0f;
 

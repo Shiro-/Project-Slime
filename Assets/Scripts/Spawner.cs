@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
         waveCount = waves.Length;
 
         //Time before we start spawning
-        if(currentState == SpawningState.Infinite)
+        if (currentState == SpawningState.Infinite)
         {
             StartCoroutine(SpawnInfiniteSlimes());
         }
@@ -91,7 +91,7 @@ public class Spawner : MonoBehaviour
 
         while (true)
         {
-            if(currentWave < waveCount)
+            if (currentWave < waveCount)
             {
                 yield return new WaitForSeconds(waitTimeBetweenWaves);
                 for (int i = 0; i < waves[currentWave].slimeCount; i++)
@@ -112,9 +112,9 @@ public class Spawner : MonoBehaviour
             {
                 break;
             }
-            
+
         }
-        
+
         yield break;
     }
 
@@ -134,9 +134,9 @@ public class Spawner : MonoBehaviour
 
     void CheckIfPlayerHasDied()
     {
-        if(GameObject.FindWithTag("Player") == null)
+        if (GameObject.FindWithTag("Player") == null)
         {
-            isPlayerDead = true;   
+            isPlayerDead = true;
         }
     }
 }
