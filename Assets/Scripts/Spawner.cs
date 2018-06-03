@@ -96,17 +96,23 @@ public class Spawner : MonoBehaviour
                 yield return new WaitForSeconds(waitTimeBetweenWaves);
                 for (int i = 0; i < waves[currentWave].slimeCount; i++)
                 {
+                    //If our player died, get out of this loop
+                    CheckIfPlayerHasDied();
+                    if (isPlayerDead == true)
+                    {
+                        break;
+                    }
+
                     Instantiate(enemyTypes[Random.Range(0, numberOfTypes)], RandomSpawnPosition(spawnPositions), Quaternion.identity);
                     yield return new WaitForSeconds(spawnTime);
                 }
                 currentWave++;
 
-                //If our player died, get out of this loop
-                CheckIfPlayerHasDied();
-                if (isPlayerDead == true)
+                if(isPlayerDead == true)
                 {
                     break;
                 }
+                
             }
             else
             {
