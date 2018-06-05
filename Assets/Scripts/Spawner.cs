@@ -5,9 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-    enum SpawningState { Wave, Infinite };
+    enum SpawningState { Wave, Infinite, FailSafe };
     //This will most likely be set through a menu
-    SpawningState currentState = SpawningState.Wave;
+    SpawningState currentState = SpawningState.FailSafe;
 
     public GameObject[] spawnPositions;
     public Transform slimes;
@@ -37,8 +37,33 @@ public class Spawner : MonoBehaviour
     private Vector3 previousPoint;
     //
 
-    private void Start()
+    //This is temp for now
+    int sv;
+
+    void Awake()
     {
+        //All of this is temp for now, in the future we will have different scenes for different modes
+        GameObject sc = GameObject.FindWithTag("StartController");
+        StartGameMode gv = sc.GetComponent<StartGameMode>();
+        sv = gv.mode;
+
+        if(sv == 1)
+        {
+            currentState = SpawningState.Wave;
+        }
+        else if(sv == 2)
+        {
+            currentState = SpawningState.Infinite;
+        }
+        else
+        {
+            currentState = SpawningState.FailSafe;
+        }
+    }
+
+    void Start()
+    {
+        Debug.Log(sv);
         currentWave = 0;
         waveCount = waves.Length;
 
@@ -51,14 +76,17 @@ public class Spawner : MonoBehaviour
         {
             StartCoroutine(SpawnWaveSlimes());
         }
+        else if (currentState == SpawningState.FailSafe)
+        {
+            Debug.Log("Somehow you ended up here and you shouldn't be here");
+        }
         else
         {
-            //If somehow we end up here, display a message in console
-            Debug.Log("Current state is invalid");
+            Debug.Log("Please stop breaking everything");
         }
     }
 
-    private void Update()
+    void Update()
     {
         //Check which spawn we are on
     }
@@ -108,11 +136,11 @@ public class Spawner : MonoBehaviour
                 }
                 currentWave++;
 
-                if(isPlayerDead == true)
+                if (isPlayerDead == true)
                 {
                     break;
                 }
-                
+
             }
             else
             {

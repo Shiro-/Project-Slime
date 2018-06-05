@@ -10,6 +10,8 @@ public class StartGameMode : MonoBehaviour
     public Button waveModeButton;
     public Button infiniteModeButton;
 
+    public int mode;
+
     void Start()
     {
         Button wave = waveModeButton.GetComponent<Button>();
@@ -19,14 +21,21 @@ public class StartGameMode : MonoBehaviour
         infinite.onClick.AddListener(StartInfiniteMode);
     }
 
-    public void StartWaveMode()
+    void StartWaveMode()
     {
         Debug.Log("You chose wave mode");
+        mode = 1;
+        DontDestroyOnLoad(this.gameObject);
+        //In the future, we will have different scenes for the different game modes
+        SceneManager.LoadScene("ProofOfConcept");
     }
 
-    public void StartInfiniteMode()
+    void StartInfiniteMode()
     {
         Debug.Log("You chose infinite mode");
+        mode = 2;
+        DontDestroyOnLoad(this.gameObject);
+        SceneManager.LoadScene("ProofOfConcept");
     }
     //public void ChooseGameMode(string scene)
     //{
