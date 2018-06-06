@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
     private Collider triggerCollider;
 
     private Vector3 offset;
+    private Vector3 previousPlayerPosition;
 
     private bool isColliding;
 
@@ -32,12 +33,23 @@ public class CameraFollow : MonoBehaviour
         if(isColliding)
         {
             //transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
-            transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, 0.0f);
+            MoveCameraPosition();
+            //MoveTriggerPosition();
         }
         else
         {
             Debug.Log("Camera not moving");
         }
+    }
+
+    void MoveCameraPosition()
+    {
+        transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, 0.0f);
+    }
+
+    void MoveTriggerPosition()
+    {
+        trigger.transform.position = new Vector3(player.transform.position.x + offset.x, trigger.transform.position.y, trigger.transform.position.z);
     }
 
     void CheckPlayerTrigger()
