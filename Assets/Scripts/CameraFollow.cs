@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour
 
         CheckPlayerTrigger();
 
-        if(isColliding && player.transform.position.x > previousPlayerPosition.x)
+        if((isColliding && player.transform.position.x > previousPlayerPosition.x) || (isColliding))
         {
             previousPlayerPosition = player.transform.position;
 
