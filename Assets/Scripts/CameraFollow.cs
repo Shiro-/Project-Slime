@@ -46,7 +46,7 @@ public class CameraFollow : MonoBehaviour
         else
         {
             //We need this to set our position when we are outside of the trigger box
-            previousPlayerPosition = player.transform.position;
+            //previousPlayerPosition = player.transform.position;
             Debug.Log("Camera not moving");
         }
     }
