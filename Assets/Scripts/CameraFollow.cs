@@ -23,6 +23,7 @@ public class CameraFollow : MonoBehaviour
 
         //Used so we can move the camera along the x axis only
         offset = transform.position - player.transform.position;
+        previousPlayerPosition = player.transform.position;
     }
 
     void LateUpdate()
@@ -30,14 +31,18 @@ public class CameraFollow : MonoBehaviour
 
         CheckPlayerTrigger();
 
-        if(isColliding)
+        if(isColliding && player.transform.position.x > previousPlayerPosition.x)
         {
+            previousPlayerPosition = player.transform.position;
+
             //transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
             MoveCameraPosition();
-            //MoveTriggerPosition();
+            MoveTriggerPosition();
         }
         else
         {
+            //We need this to set our position when we are outside of the trigger box
+            previousPlayerPosition = player.transform.position;
             Debug.Log("Camera not moving");
         }
     }
@@ -49,7 +54,7 @@ public class CameraFollow : MonoBehaviour
 
     void MoveTriggerPosition()
     {
-        trigger.transform.position = new Vector3(player.transform.position.x + offset.x, trigger.transform.position.y, trigger.transform.position.z);
+        trigger.transform.position = new Vector3(trigger.transform.position.x + offset.x, trigger.transform.position.y, trigger.transform.position.z);
     }
 
     void CheckPlayerTrigger()
