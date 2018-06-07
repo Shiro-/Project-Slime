@@ -31,13 +31,17 @@ public class CameraFollow : MonoBehaviour
 
         CheckPlayerTrigger();
 
-        if((isColliding && player.transform.position.x > previousPlayerPosition.x) || (isColliding))
+        if(isColliding && player.transform.position.x > previousPlayerPosition.x)
         {
             previousPlayerPosition = player.transform.position;
 
             //transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
             MoveCameraPosition();
-            MoveTriggerPosition();
+            //MoveTriggerPosition();
+        }
+        else if (isColliding)
+        {
+            MoveCameraPosition();
         }
         else
         {
@@ -52,10 +56,10 @@ public class CameraFollow : MonoBehaviour
         transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, 0.0f);
     }
 
-    void MoveTriggerPosition()
-    {
-        trigger.transform.position = new Vector3(trigger.transform.position.x + offset.x, trigger.transform.position.y, trigger.transform.position.z);
-    }
+    //void MoveTriggerPosition()
+    //{
+    //    trigger.transform.position = new Vector3(trigger.transform.position.x + 1.0f, trigger.transform.position.y, trigger.transform.position.z);
+    //}
 
     void CheckPlayerTrigger()
     {
