@@ -49,10 +49,12 @@ public class Player : MonoBehaviour
 
         Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, 0.0f, moveZ * _speed * Time.deltaTime);
         
-        mover.y = Mathf.Clamp(0.0f, -10.0f, 1.0f);
-        rb.velocity = mover;
+        //mover.y = Mathf.Clamp(0.0f, -10.0f, 1.0f);
+        //rb.velocity = mover;
+        //mover.y = rb.velocity.y;
+        //rb.velocity = mover;
         //rb.MovePosition(transform.position + mover);
-        //rb.AddForce(mover);
+        rb.AddForce(mover);
     }
 
     private void OnTriggerEnter(Collider other)
