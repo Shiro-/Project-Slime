@@ -81,11 +81,19 @@ public class Player : MonoBehaviour
                 //Moving forward
                 if (oldGround < pGround)
                 {
-                    gNext = gPrev.gameObject;
-                    gPrev = other.gameObject;
+                    if (pGround == 1)
+                    {
+                        gNext = gPrev.gameObject;
+                        gPrev = other.gameObject;
+                    }
+                    else
+                    {
+                        gNext = gPrev.gameObject;
+                        gPrev = other.gameObject;
 
-                    groundT = gNext.GetComponent<Transform>();
-                    gNext.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround + 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                        groundT = gNext.GetComponent<Transform>();
+                        gNext.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround + 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                    }
                 }
                 //Moving backward
                 else if (oldGround > pGround)
