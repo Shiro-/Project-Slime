@@ -46,9 +46,13 @@ public class Player : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
+        MovePlayer(moveX, moveZ);
+    }
 
+    private void MovePlayer(float moveX, float moveZ)
+    {
         Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, 0.0f, moveZ * _speed * Time.deltaTime);
-        
+
         //mover.y = Mathf.Clamp(0.0f, -10.0f, 1.0f);
         //rb.velocity = mover;
         //mover.y = rb.velocity.y;
