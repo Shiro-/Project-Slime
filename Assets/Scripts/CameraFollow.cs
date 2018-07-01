@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 offset;
     private Vector3 previousPlayerPosition;
 
-    private bool isColliding;
+    //private bool isColliding;
 
     void Start()
     {
@@ -29,31 +29,33 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
 
-        CheckPlayerTrigger();
+        //CheckPlayerTrigger();
 
-        if(isColliding && player.transform.position.x > previousPlayerPosition.x)
-        {
-            previousPlayerPosition = player.transform.position;
+        //if(isColliding && player.transform.position.x > previousPlayerPosition.x)
+        //{
+        //    previousPlayerPosition = player.transform.position;
 
-            //transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
-            MoveCameraPosition();
-            //MoveTriggerPosition();
-        }
-        else if (isColliding)
-        {
-            MoveCameraPosition();
-        }
-        else
-        {
-            //We need this to set our position when we are outside of the trigger box
-            //previousPlayerPosition = player.transform.position;
-            Debug.Log("Camera not moving");
-        }
+        //    //transform.position = new Vector3((cameraPosition.position.x + player.transform.position.x), cameraPosition.position.y, 0.0f);
+        //    MoveCameraPosition();
+        //    //MoveTriggerPosition();
+        //}
+        //else if (isColliding)
+        //{
+        //    MoveCameraPosition();
+        //}
+        //else
+        //{
+        //    //We need this to set our position when we are outside of the trigger box
+        //    //previousPlayerPosition = player.transform.position;
+        //    Debug.Log("Camera not moving");
+        //}
+
+        MoveCameraPosition();
     }
 
     void MoveCameraPosition()
     {
-        transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, 0.0f);
+        transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, cameraPosition.position.z);
     }
 
     //void MoveTriggerPosition()
@@ -61,15 +63,15 @@ public class CameraFollow : MonoBehaviour
     //    trigger.transform.position = new Vector3(trigger.transform.position.x + 1.0f, trigger.transform.position.y, trigger.transform.position.z);
     //}
 
-    void CheckPlayerTrigger()
-    {
-        if(playerCollider.bounds.Intersects(triggerCollider.bounds))
-        {
-            isColliding = true;
-        }
-        else
-        {
-            isColliding = false;
-        }
-    }
+    //void CheckPlayerTrigger()
+    //{
+    //    if(playerCollider.bounds.Intersects(triggerCollider.bounds))
+    //    {
+    //        isColliding = true;
+    //    }
+    //    else
+    //    {
+    //        isColliding = false;
+    //    }
+    //}
 }
