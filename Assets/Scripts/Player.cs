@@ -51,14 +51,14 @@ public class Player : MonoBehaviour
 
     private void MovePlayer(float moveX, float moveZ)
     {
-        Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, 0.0f, moveZ * _speed * Time.deltaTime);
+        Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, Mathf.Clamp(rb.velocity.y, -10.0f, 1.01f), moveZ * _speed * Time.deltaTime);
 
         //mover.y = Mathf.Clamp(0.0f, -10.0f, 1.0f);
         //rb.velocity = mover;
         //mover.y = rb.velocity.y;
-        //rb.velocity = mover;
+        rb.velocity = mover;
         //rb.MovePosition(transform.position + mover);
-        rb.AddForce(mover);
+        //rb.AddForce(mover);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -102,14 +102,14 @@ public class Player : MonoBehaviour
                     }
                 }
                 //Moving backward
-                else if (oldGround > pGround)
-                {
-                    gPrev = gNext.gameObject;
-                    gNext = other.gameObject;
+                //else if (oldGround > pGround)
+                //{
+                //    gPrev = gNext.gameObject;
+                //    gNext = other.gameObject;
 
-                    groundT = gNext.GetComponent<Transform>();
-                    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
-                }
+                //    groundT = gNext.GetComponent<Transform>();
+                //    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                //}
             }
         }
     }
