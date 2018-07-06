@@ -105,6 +105,7 @@ public class Spawner : MonoBehaviour
             CheckIfPlayerHasDied();
             if (isPlayerDead == true)
             {
+                StopAllCoroutines();
                 break;
             }
         }
@@ -128,6 +129,7 @@ public class Spawner : MonoBehaviour
                     CheckIfPlayerHasDied();
                     if (isPlayerDead == true)
                     {
+                        StopAllCoroutines();
                         break;
                     }
 

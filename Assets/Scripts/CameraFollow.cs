@@ -5,8 +5,9 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject player;
-    public GameObject trigger;
+    //public GameObject trigger;
     public Transform cameraPosition;
+    public Transform cameraZoomPosition;
 
     private Collider playerCollider;
     private Collider triggerCollider;
@@ -14,16 +15,23 @@ public class CameraFollow : MonoBehaviour
     private Vector3 offset;
     private Vector3 previousPlayerPosition;
 
+    private float playerHeightThreshold;
+
+    public float zoomSpeed;
+
     //private bool isColliding;
 
     void Start()
     {
         playerCollider = player.GetComponent<Collider>();
-        triggerCollider = trigger.GetComponent<Collider>();
+        //triggerCollider = trigger.GetComponent<Collider>();
 
         //Used so we can move the camera along the x axis only
         offset = transform.position - player.transform.position;
         previousPlayerPosition = player.transform.position;
+
+        //For camera zoom in
+        playerHeightThreshold = player.transform.position.y;
     }
 
     void LateUpdate()
@@ -50,12 +58,25 @@ public class CameraFollow : MonoBehaviour
         //    Debug.Log("Camera not moving");
         //}
 
-        MoveCameraPosition();
+        if(player.transform.position.y < playerHeightThreshold)
+        {
+            MoveCameraPosition();
+            CameraZoomIn();
+        }
+        else
+        {
+            MoveCameraPosition();
+        }
     }
 
     void MoveCameraPosition()
     {
         transform.position = new Vector3(player.transform.position.x + offset.x, cameraPosition.position.y, cameraPosition.position.z);
+    }
+
+    void CameraZoomIn()
+    {
+        transform.position = Vector3.Lerp(transform.position, cameraZoomPosition.position, Time.deltaTime * zoomSpeed);
     }
 
     //void MoveTriggerPosition()
