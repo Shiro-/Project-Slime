@@ -33,10 +33,6 @@ public class Spawner : MonoBehaviour
     public int waveCount;
     public int currentWave;
 
-    //
-    private Vector3 previousPoint;
-    //
-
     //This is temp for now
     int sv;
 
