@@ -102,14 +102,14 @@ public class Player : MonoBehaviour
                     }
                 }
                 //Moving backward
-                //else if (oldGround > pGround)
-                //{
-                //    gPrev = gNext.gameObject;
-                //    gNext = other.gameObject;
+                else if (oldGround > pGround)
+                {
+                    gPrev = gNext.gameObject;
+                    gNext = other.gameObject;
 
-                //    groundT = gNext.GetComponent<Transform>();
-                //    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
-                //}
+                    groundT = gNext.GetComponent<Transform>();
+                    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                }
             }
         }
     }
