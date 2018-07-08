@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public float _speed;
 
-    private int dist;
+    public int dist;
 
     private Rigidbody rb;
     private float freezeAxis = 0.0f;
