@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float _speed;
 
+    private int dist;
+
     private Rigidbody rb;
     private float freezeAxis = 0.0f;
 
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
         MovePlayer(moveX, moveZ);
+
+        dist = Mathf.RoundToInt(rb.position.x + gOffset);
     }
 
     private void MovePlayer(float moveX, float moveZ)
@@ -102,14 +106,14 @@ public class Player : MonoBehaviour
                     }
                 }
                 //Moving backward
-                else if (oldGround > pGround)
-                {
-                    gPrev = gNext.gameObject;
-                    gNext = other.gameObject;
+                //else if (oldGround > pGround)
+                //{
+                //    gPrev = gNext.gameObject;
+                //    gNext = other.gameObject;
 
-                    groundT = gNext.GetComponent<Transform>();
-                    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
-                }
+                //    groundT = gNext.GetComponent<Transform>();
+                //    gPrev.GetComponent<Transform>().SetPositionAndRotation(new Vector3((pGround - 1) * groundL, 0.0f, 0.0f), Quaternion.identity);
+                //}
             }
         }
     }
