@@ -7,6 +7,17 @@ public class GameController : MonoBehaviour
 {
     public Player p;
     public Text distText;
+    public Text waveText;
+
+    int startValue;
+
+    private void Awake()
+    {
+        //This gets what version of the game is being played
+        GameObject startControllerObject = GameObject.FindWithTag("StartController");
+        StartGameMode gameValue = startControllerObject.GetComponent<StartGameMode>();
+        startValue = gameValue.mode;
+    }
 
     private void Start()
     {
@@ -15,6 +26,14 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        distText.text = "Distance: " + p.dist;
+        if(startValue == 1)
+        {
+            waveText.text = "Current Wave: " + gameObject.GetComponent<Spawner>().currentWave;
+        }
+        else if(startValue == 2)
+        {
+            distText.text = "Distance: " + p.dist;
+        }
+        
     }
 }
