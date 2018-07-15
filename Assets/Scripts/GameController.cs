@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
         }
         else if(startValue == 2)
         {
-            distText.text = "Distance: " + p.dist;
+            distText.text = "Distance: " + p.dist.ToString();
         }
         
     }
