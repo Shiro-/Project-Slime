@@ -28,11 +28,12 @@ public class GameController : MonoBehaviour
     {
         if(startValue == 1)
         {
-            waveText.text = "Current Wave: " + gameObject.GetComponent<Spawner>().currentWave;
+            //I add +1 because we start at wave 1 not 0
+            waveText.text = "Current Wave: " + (gameObject.GetComponent<Spawner>().currentWave + 1);
         }
         else if(startValue == 2)
         {
-            distText.text = "Distance: " + p.dist.ToString();
+            distText.text = "Distance: " + p.dist;
         }
         
     }
