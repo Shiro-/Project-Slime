@@ -11,7 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: af2943975ed728748a414e4f9ceef237
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ProofOfConcept.unity
     guid: 8e7ff1f28b4862b48b5ef0043b0e9f47
+  - enabled: 1
+    path: Assets/Scenes/WaveDifficulty.unity
+    guid: 892e77d3318bd23418e5360b6bde927f
+  - enabled: 1
+    path: Assets/Scenes/InfiniteDifficulty.unity
+    guid: a7a0ad411785e584bba9ed0c94bf1221
   m_configObjects: {}

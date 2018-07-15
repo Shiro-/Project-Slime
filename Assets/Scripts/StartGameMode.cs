@@ -27,7 +27,7 @@ public class StartGameMode : MonoBehaviour
         mode = 1;
         DontDestroyOnLoad(this.gameObject);
         //In the future, we will have different scenes for the different game modes
-        SceneManager.LoadScene("ProofOfConcept");
+        SceneManager.LoadScene("WaveDifficulty");
     }
 
     void StartInfiniteMode()
@@ -35,7 +35,7 @@ public class StartGameMode : MonoBehaviour
         Debug.Log("You chose infinite mode");
         mode = 2;
         DontDestroyOnLoad(this.gameObject);
-        SceneManager.LoadScene("ProofOfConcept");
+        SceneManager.LoadScene("InfiniteDifficulty");
     }
     //public void ChooseGameMode(string scene)
     //{
