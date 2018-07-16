@@ -67,6 +67,8 @@ public class PauseMenu : MonoBehaviour
 
     void ReturnToMainMenu()
     {
+        Time.timeScale = 1f;
+        Destroy(GameObject.Find("StartController"));
         //When I add the buttons
         SceneManager.LoadScene("MainMenu");
     }
