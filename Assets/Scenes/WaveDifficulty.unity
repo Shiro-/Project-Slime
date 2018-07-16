@@ -775,11 +775,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4755212489120144, guid: 4b6e8b9ce7b6f5e43afb22dccf0984fd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4572361022596732, guid: 4b6e8b9ce7b6f5e43afb22dccf0984fd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114309096545708208, guid: 4b6e8b9ce7b6f5e43afb22dccf0984fd,
         type: 2}

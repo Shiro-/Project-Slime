@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour
         previousPlayerPosition = player.transform.position;
 
         //For camera zoom in
-        playerHeightThreshold = player.transform.position.y;
+        playerHeightThreshold = 0.95f;
     }
 
     void LateUpdate()
