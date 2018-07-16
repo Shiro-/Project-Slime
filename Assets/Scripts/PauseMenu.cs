@@ -96,11 +96,11 @@ public class PauseMenu : MonoBehaviour
     {
         if(isPaused)
         {
-            pauseButton.gameObject.SetActive(false);
+            pauseButton.gameObject.SetActive(true);
         }
         else
         {
-            pauseButton.gameObject.SetActive(true);
+            pauseButton.gameObject.SetActive(false);
         }
     }
 }
