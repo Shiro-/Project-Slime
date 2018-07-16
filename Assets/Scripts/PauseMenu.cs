@@ -26,6 +26,7 @@ public class PauseMenu : MonoBehaviour
         Button returnToMainMenu = returnToMainMenuButton.GetComponent<Button>();
         Button quit = quitButton.GetComponent<Button>();
 
+        //Used when we click on buttons
         pause.onClick.AddListener(PauseGame);
         resume.onClick.AddListener(ResumeGame);
         returnToMainMenu.onClick.AddListener(ReturnToMainMenu);
@@ -47,6 +48,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //Reference for timescale https://docs.unity3d.com/ScriptReference/Time-timeScale.html
     void PauseGame()
     {
         Time.timeScale = 0f;
@@ -75,6 +77,7 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
+    //Hiding the menu itself
     void SetPauseMenuActivity()
     {
         if(isPaused)
@@ -88,6 +91,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     //Only for mobile, i think
+    //Hide when the game is paused
     void SetPauseButtonActivity()
     {
         if(isPaused)
