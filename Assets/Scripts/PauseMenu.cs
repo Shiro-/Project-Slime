@@ -19,6 +19,19 @@ public class PauseMenu : MonoBehaviour
     public Button returnToMainMenuButton;
     public Button quitButton;
 
+    void Start()
+    {
+        Button pause = pauseButton.GetComponent<Button>();
+        Button resume = resumeButton.GetComponent<Button>();
+        Button returnToMainMenu = returnToMainMenuButton.GetComponent<Button>();
+        Button quit = quitButton.GetComponent<Button>();
+
+        pause.onClick.AddListener(PauseGame);
+        resume.onClick.AddListener(ResumeGame);
+        returnToMainMenu.onClick.AddListener(ReturnToMainMenu);
+        quit.onClick.AddListener(QuitGame);
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -38,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0f;
         SetPauseMenuActivity();
+        SetPauseButtonActivity();
         isPaused = true;
     }
 
@@ -45,6 +59,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SetPauseMenuActivity();
+        SetPauseButtonActivity();
         isPaused = false;
     }
 
