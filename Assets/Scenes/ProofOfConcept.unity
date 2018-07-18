@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 416289523}
   - component: {fileID: 416289522}
   - component: {fileID: 416289526}
+  - component: {fileID: 416289527}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -324,6 +325,21 @@ MonoBehaviour:
   resumeButton: {fileID: 367065539}
   returnToMainMenuButton: {fileID: 707665265}
   quitButton: {fileID: 1162955087}
+--- !u!114 &416289527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416289521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38a6cf5716c48c4199234f9f23cd08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathScreen: {fileID: 594079614}
+  retryButton: {fileID: 1459972974}
+  returnToMainMenuButton: {fileID: 723923436}
+  quitButton: {fileID: 458156010}
 --- !u!1 &458156008
 GameObject:
   m_ObjectHideFlags: 0
