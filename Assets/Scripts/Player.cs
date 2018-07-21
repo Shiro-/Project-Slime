@@ -56,15 +56,11 @@ public class Player : MonoBehaviour
     private void MovePlayer(float moveX, float moveZ)
     {
         //Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, Mathf.Clamp(rb.velocity.y, -10.0f, 1.01f), moveZ * _speed * Time.deltaTime);
-        Vector3 mover = new Vector3(moveX * _speed * Time.deltaTime, 0.0f, moveZ * _speed * Time.deltaTime);
+        Vector3 mover = new Vector3(moveX * _speed, 0.0f, moveZ * _speed);
 
-        //mover.y = Mathf.Clamp(0.0f, -10.0f, 1.0f);
-        //rb.velocity = mover;
-        //mover.y = rb.velocity.y;
-        mover.y += rb.velocity.y * Time.deltaTime;
-        rb.velocity = mover;
-        //rb.MovePosition(transform.position + mover);
-        //rb.AddForce(mover);
+        mover.y += rb.velocity.y * _speed;
+        mover.y = Mathf.Round(Mathf.Clamp(mover.y, -10.0f, 1.0f));
+        rb.velocity = mover * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

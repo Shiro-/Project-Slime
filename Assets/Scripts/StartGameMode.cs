@@ -22,6 +22,8 @@ public class StartGameMode : MonoBehaviour
         wave.onClick.AddListener(StartWaveMode);
         infinite.onClick.AddListener(StartInfiniteMode);
         debug.onClick.AddListener(StartDebugMode);
+
+        Time.timeScale = 1f;
     }
 
     void StartWaveMode()
