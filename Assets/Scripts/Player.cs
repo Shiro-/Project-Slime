@@ -46,11 +46,18 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-        MovePlayer(moveX, moveZ);
+        if (transform.position.y < 0.95f)
+        {
+            transform.Translate(Vector3.down * Time.deltaTime);
+        }
+        else
+        {
+            float moveX = Input.GetAxis("Horizontal");
+            float moveZ = Input.GetAxis("Vertical");
+            MovePlayer(moveX, moveZ);
 
-        dist = Mathf.RoundToInt(rb.position.x + gOffset);
+            dist = Mathf.RoundToInt(rb.position.x + gOffset);
+        }
     }
 
     private void MovePlayer(float moveX, float moveZ)
