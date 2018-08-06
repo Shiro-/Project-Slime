@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SpawningState { Wave, Infinite, FailSafe };
+
 
 public class Spawner : MonoBehaviour
 {
+
+    public enum SpawningState { Wave, Infinite, FailSafe };
     //This will most likely be set through a menu
     public SpawningState currentState = SpawningState.FailSafe;
 

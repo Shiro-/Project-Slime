@@ -14,31 +14,14 @@ public class GameController : MonoBehaviour
 
     bool isPlayerDead;
 
-    SpawningState currentState;
-
-    void Awake()
-    {
-        ////This gets what version of the game is being played
-        //GameObject startControllerObject = GameObject.FindWithTag("StartController");
-        //StartGameMode gameValue = startControllerObject.GetComponent<StartGameMode>();
-        //startValue = gameValue.mode;
-
-        
-    }
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        if(currentState == SpawningState.Wave)
+        if(gameObject.GetComponent<Spawner>().currentState == Spawner.SpawningState.Wave)
         {
             //I add +1 because we start at wave 1 not 0
             waveText.text = "Current Wave: " + (gameObject.GetComponent<Spawner>().currentWave + 1);
         }
-        else if(currentState == SpawningState.Infinite)
+        else if(gameObject.GetComponent<Spawner>().currentState == Spawner.SpawningState.Infinite)
         {
             distText.text = "Distance: " + p.dist;
         }
