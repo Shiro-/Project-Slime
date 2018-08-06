@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawningState { Wave, Infinite, FailSafe };
+
 public class Spawner : MonoBehaviour
 {
-
-    enum SpawningState { Wave, Infinite, FailSafe };
     //This will most likely be set through a menu
-    SpawningState currentState = SpawningState.FailSafe;
+    public SpawningState currentState = SpawningState.FailSafe;
 
     public GameObject[] spawnPositions;
     public Transform slimes;
@@ -34,32 +34,32 @@ public class Spawner : MonoBehaviour
     public int currentWave;
 
     //This is temp for now
-    int sv;
+    //int sv;
 
     void Awake()
     {
-        //All of this is temp for now, in the future we will have different scenes for different modes
-        GameObject sc = GameObject.FindWithTag("StartController");
-        StartGameMode gv = sc.GetComponent<StartGameMode>();
-        sv = gv.mode;
+        ////All of this is temp for now, in the future we will have different scenes for different modes
+        //GameObject sc = GameObject.FindWithTag("StartController");
+        //StartGameMode gv = sc.GetComponent<StartGameMode>();
+        //sv = gv.mode;
 
-        if(sv == 1)
-        {
-            currentState = SpawningState.Wave;
-        }
-        else if(sv == 2)
-        {
-            currentState = SpawningState.Infinite;
-        }
-        else
-        {
-            currentState = SpawningState.FailSafe;
-        }
+        //if(sv == 1)
+        //{
+        //    currentState = SpawningState.Wave;
+        //}
+        //else if(sv == 2)
+        //{
+        //    currentState = SpawningState.Infinite;
+        //}
+        //else
+        //{
+        //    currentState = SpawningState.FailSafe;
+        //}
     }
 
     void Start()
     {
-        Debug.Log(sv);
+        //Debug.Log(sv);
         currentWave = 0;
         waveCount = waves.Length;
 

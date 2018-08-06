@@ -13,14 +13,8 @@ public class DeathScreen : MonoBehaviour
     public Button quitButton;
 
     bool isPlayerDead;
-    int startValue;
 
-    void Awake()
-    {
-        GameObject startControllerObject = GameObject.FindWithTag("StartController");
-        StartGameMode gameValue = startControllerObject.GetComponent<StartGameMode>();
-        startValue = gameValue.mode;
-    }
+
 
     void Start()
     {
@@ -44,6 +38,7 @@ public class DeathScreen : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1f;
             //do nothing?
         }
     }
@@ -74,22 +69,9 @@ public class DeathScreen : MonoBehaviour
 
     void RetryLevel()
     {
-        if (startValue == 1)
-        {
-            SetDeathScreenActivity();
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("WaveDifficulty");
-        }
-        else if (startValue == 2)
-        {
-            SetDeathScreenActivity();
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("InfiniteDifficulty");
-        }
-        else
-        {
-            Debug.Log("Somehow you reached here and you shouldn't be here.");
-        }
+        Time.timeScale = 1f;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     void ReturnToMainMenu()

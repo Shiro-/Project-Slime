@@ -30,7 +30,7 @@ public class StartGameMode : MonoBehaviour
     {
         Debug.Log("You chose wave mode");
         mode = 1;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         //In the future, we will have different scenes for the different game modes
         SceneManager.LoadScene("WaveDifficulty");
     }
@@ -39,7 +39,7 @@ public class StartGameMode : MonoBehaviour
     {
         Debug.Log("You chose infinite mode");
         mode = 2;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         SceneManager.LoadScene("InfiniteDifficulty");
     }
 
@@ -48,7 +48,7 @@ public class StartGameMode : MonoBehaviour
         //Only infinite mode
         Debug.Log("You chose debug mode");
         mode = 2;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         SceneManager.LoadScene("ProofOfConcept");
     }
     //public void ChooseGameMode(string scene)

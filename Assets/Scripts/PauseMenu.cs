@@ -16,20 +16,20 @@ public class PauseMenu : MonoBehaviour
 
     //Buttons on the pause menu itself
     public Button resumeButton;
-    public Button returnToMainMenuButton;
+    public Button retryButton;
     public Button quitButton;
 
     void Start()
     {
         Button pause = pauseButton.GetComponent<Button>();
         Button resume = resumeButton.GetComponent<Button>();
-        Button returnToMainMenu = returnToMainMenuButton.GetComponent<Button>();
+        Button retry = retryButton.GetComponent<Button>();
         Button quit = quitButton.GetComponent<Button>();
 
         //Used when we click on buttons
         pause.onClick.AddListener(PauseGame);
         resume.onClick.AddListener(ResumeGame);
-        returnToMainMenu.onClick.AddListener(ReturnToMainMenu);
+        retry.onClick.AddListener(Retry);
         quit.onClick.AddListener(QuitGame);
     }
 
@@ -65,12 +65,11 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
-    void ReturnToMainMenu()
+    void Retry()
     {
         Time.timeScale = 1f;
-        Destroy(GameObject.Find("StartController"));
-        //When I add the buttons
-        SceneManager.LoadScene("MainMenu");
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     void QuitGame()
